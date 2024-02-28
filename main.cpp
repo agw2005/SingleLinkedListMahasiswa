@@ -62,7 +62,7 @@ struct SinglyLinkedList{
             }
         }
     }
-/*
+
     void insert_after(int flag, int id, const std::string& name){
         Node* temp = new Node();
         temp -> nama = name;
@@ -74,7 +74,7 @@ struct SinglyLinkedList{
             tail = temp;
         } else {
             while (current != nullptr) {
-                if(current -> nim = flag){
+                if(current -> nim == flag){
                     temp->next = current->next;
                     current->next = temp;
                     break;
@@ -83,7 +83,7 @@ struct SinglyLinkedList{
                 }
             }
         }
-    }*/
+    }
 
 };
 
@@ -92,6 +92,6 @@ int main(){
     list.push_back(143, "Danial");
     list.push_back(163, "Dicky");
     list.push_back(130,"Antonio");
-    list.insert_before(130,142,"Yusuf");
+    list.insert_after(130,142,"Yusuf");
     list.transverse();
 }
