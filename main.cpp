@@ -2,7 +2,7 @@
  * Tugas Minggu-3 : Singly Linked List
  * Buatlah sebuah node yang merepresentasikan mahasiswa yang berisi data mahasiswa:
  * nim bertipe integer dan nama bertipe string. Acuan data adalah nim.
- * Buat operasi (tambah data) linked list, (print data), (insert data), dan delete data
+ * Buat operasi (tambah data) linked list, (print data), (insert data), dan (delete data)
  */
 
 
@@ -46,13 +46,19 @@ struct SinglyLinkedList{
         tail -> next = nullptr;
     }
 
-    void transverse() const{
+    void traverse() const{
         Node* current = head;
         int count = 1;
-        while(current != nullptr){
-            std::cout<<"Index-"<<count<<" :\n(Nama = "<<current -> nama<<") (NIM = "<<current -> nim<<")\n-------------------------------"<<std::endl;
-            current = current -> next;
-            count++;
+        if(current == nullptr){std::cout<<"Cannot traverse, List is empty.\n";}
+        else {
+            while (current != nullptr) {
+                std::cout << "Index-" << count << " :\n(Nama = " << current->nama << ") (NIM = " << current->nim
+                          << ")\n-------------------------------" << std::endl;
+                current = current->next;
+                count++;
+            }
+            std::cout << "Head = " << head->nim << '\n';
+            std::cout << "Tail = " << tail->nim << "\n-------------------------------";
         }
     }
 
@@ -67,7 +73,7 @@ struct SinglyLinkedList{
             head = temp;
         } else {
             while (current != nullptr) {
-                if(current == tail){break;}
+                if(current == tail->next){break;}
                 if ((current->next)->nim == flag) {
                     temp->next = current->next;
                     current->next = temp;
@@ -90,7 +96,7 @@ struct SinglyLinkedList{
             tail = temp;
         } else {
             while (current != nullptr) {
-                if(current == tail){break;}
+                if(current == tail->next){break;}
                 if(current -> nim == flag){
                     temp->next = current->next;
                     current->next = temp;
@@ -102,8 +108,28 @@ struct SinglyLinkedList{
         }
     }
 
-    //void eraseAt(int flag)
-
+    void eraseAt(int flag){
+        Node* current = head;
+        if(current == nullptr){std::cout<<"Cannot erase, List is empty.\n";}
+        else {
+            while (current != tail) {
+                if (current != nullptr && current == head && flag == head->nim) {
+                    head = head->next;
+                    break;
+                } else if (current != nullptr && flag == tail->nim && (current->next) == tail) {
+                    //still evaluate the tail even though tail is outside the loop range :)
+                    tail = current;
+                    tail->next = nullptr;
+                    break;
+                } else if (current != nullptr && (current->next)->nim == flag) {
+                    current->next = (current->next)->next;
+                    break;
+                } else {
+                    current = current->next;
+                }
+            }
+        }
+    }
 };
 
 int main(){
@@ -111,6 +137,7 @@ int main(){
     list.push_back(143, "Danial");
     list.push_back(163, "Dicky");
     list.push_back(130,"Antonio");
-    list.insert_before(132,142,"Yusuf");
-    list.transverse();
+    list.push_back(150,"Ardi");
+    list.eraseAt(100);
+    list.traverse();
 }
