@@ -133,7 +133,7 @@ struct SinglyLinkedList{
 
     void eraseLast(){
         Node* current = head;
-        if(tail == nullptr){std::cout<<"Cannot erase the tail, List is empty.\n";}
+        if(current == nullptr){std::cout<<"Cannot erase the tail, List is empty.\n";}
         else{
             while(current != tail){
                 if( current->next == tail ){
@@ -147,14 +147,21 @@ struct SinglyLinkedList{
         }
     }
 
+    void eraseFirst(){
+        if(head == nullptr){std::cout<<"Cannot erase the head, List is empty.\n";}
+        else{
+            head = head-> next;
+        }
+    }
+
 };
 
 int main(){
-    SinglyLinkedList list;
+    SinglyLinkedList list;/*
     list.push_back(143, "Danial");
     list.push_back(163, "Dicky");
     list.push_back(130,"Antonio");
-    list.push_back(150,"Ardi");
-    list.eraseLast();
+    list.push_back(150,"Ardi");*/
+    list.eraseFirst();
     list.traverse();
 }
