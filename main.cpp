@@ -157,11 +157,30 @@ struct SinglyLinkedList{
 };
 
 int main(){
-    SinglyLinkedList list;/*
-    list.push_back(143, "Danial");
-    list.push_back(163, "Dicky");
-    list.push_back(130,"Antonio");
-    list.push_back(150,"Ardi");*/
+    SinglyLinkedList list;
+    list.push_back(111, "Danial");
+    list.push_back(333, "Dicky");
+    list.push_back(444,"Antonio");
+    list.push_back(555,"Ardi");
+    list.push_back(666,"Yusuf");
     list.eraseFirst();
+    list.eraseLast();
+    //Remaining: 333,444,555
+
+    list.push_forward(111,"2Danial");
+    //remaining: 111,333,444,555
+
+    list.insert_after(555, 666, "2Yusuf");
+    //remaining: 111,333,444,555,666
+
+    list.insert_before(333, 222, "Lutfi");
+    //remaining: 111,222,333,444,555,666
+
+    list.eraseFirst();
+    list.eraseLast();
+    list.eraseAt(333);
+    list.eraseAt(444);
+    //remaining: 222,555
+
     list.traverse();
 }
