@@ -61,11 +61,13 @@ struct SinglyLinkedList{
         temp -> nama = name;
         temp -> nim = id;
         Node* current = head;
+        bool reachedEnd = false;
         if(flag == head->nim){
             temp -> next = head;
             head = temp;
         } else {
             while (current != nullptr) {
+                if(current == tail){break;}
                 if ((current->next)->nim == flag) {
                     temp->next = current->next;
                     current->next = temp;
@@ -88,6 +90,7 @@ struct SinglyLinkedList{
             tail = temp;
         } else {
             while (current != nullptr) {
+                if(current == tail){break;}
                 if(current -> nim == flag){
                     temp->next = current->next;
                     current->next = temp;
@@ -99,6 +102,8 @@ struct SinglyLinkedList{
         }
     }
 
+    //void eraseAt(int flag)
+
 };
 
 int main(){
@@ -106,6 +111,6 @@ int main(){
     list.push_back(143, "Danial");
     list.push_back(163, "Dicky");
     list.push_back(130,"Antonio");
-    list.push_forward(142,"Yusuf");
+    list.insert_before(132,142,"Yusuf");
     list.transverse();
 }
