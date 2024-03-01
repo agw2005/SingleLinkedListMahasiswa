@@ -148,9 +148,12 @@ struct SinglyLinkedList{
     }
 
     void eraseFirst(){
+        Node* temp = new Node();
+        temp -> next = head;
         if(head == nullptr){std::cout<<"Cannot erase the head, List is empty.\n";}
         else{
             head = head-> next;
+            delete temp -> next;
         }
     }
 
